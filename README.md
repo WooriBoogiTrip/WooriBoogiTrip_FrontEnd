@@ -1,4 +1,4 @@
-# EnjoyTrip 02조 강태연 김도현
+# EnjoyTrip 08조 김민석 유수안
 
 메인화면<br/>
 ![메인화면](/uploads/7b727482cdee1479b9c3e43ee4a26ca5/메인화면.jpg)
