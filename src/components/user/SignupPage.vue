@@ -12,10 +12,6 @@ const userPwd = ref('');
 const email = ref('');
 const emailAlert = ref('');
 
-// 이메일 중복 검사
-const checkEmail = () => {
-  // 이메일 중복 검사 로직 구현
-};
 
 // 회원가입 요청
 const register = () => {

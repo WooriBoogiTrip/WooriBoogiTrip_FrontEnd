@@ -1,28 +1,40 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { localaxios } from "../../api/authapi";
-const axios = localaxios();
-const myinfo = ref({
-  email: "",
-  userId: "",
-  userName: "",
-});
+import { authorizationStore } from "../../stores/authorization.js";
 
-axios.get("/users/mypage").then(({ data }) => {
-  if (data) {
-    myinfo.value.email = data.email;
-    myinfo.value.userId = data.userId;
-    myinfo.value.userName = data.userName;
+const axios = localaxios();
+const store = authorizationStore();
+const myinfo = ref({ email: "", userId: "", userName: "" });
+
+onMounted(() => {
+  if (store.userData) {
+    myinfo.value = { ...store.userData };
+  } else {
+    axios.get("/users/mypage", {
+      headers: {
+        Authorization: `Bearer ${store.authToken}`
+      }
+    }).then(({ data }) => {
+      if (data) {
+        myinfo.value.email = data.email;
+        myinfo.value.userId = data.userId;
+        myinfo.value.userName = data.userName;
+      }
+    }).catch(error => {
+      console.error("Error fetching user info:", error);
+    });
   }
 });
 </script>
 
 <template>
-  <p>즐겨찾기한 여행계획, 관광지 정보 출력</p>
-  <p>이메일 : {{ myinfo.email }}</p>
-  <p>사용자 ID : {{ myinfo.userId }}</p>
-  <p>사용자 이름 : {{ myinfo.userName }}</p>
+  <div>
+    <h1>My Page</h1>
+    <p>Email: {{ myinfo.email }}</p>
+    <p>User Name: {{ myinfo.userName }}</p>
+    
+  </div>
 </template>
 
 <style scoped></style>
-

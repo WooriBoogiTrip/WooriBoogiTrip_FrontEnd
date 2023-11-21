@@ -2,22 +2,30 @@
 import { useRouter } from "vue-router";
 import { ref } from "vue";
 import { localaxios } from "../../api/authapi";
-
+import { authorizationStore } from "../../stores/authorization.js";
+const store = authorizationStore();
 const axios = localaxios();
 const router = useRouter();
 const userId = ref('');
 const userPwd = ref('');
 
 const login = () => {
-  axios.post("/users/login", { 
-    userid: userId.value, 
-    userpwd: userPwd.value 
-  }).then(({ data }) => {
-    if (data) {
-      router.push({ name: "home" });
-    }
-  });
+  let formData = new FormData();
+  formData.append("userid", userId.value);
+  formData.append("userpwd", userPwd.value);
+
+  axios.post("/api/v1/users/login", formData)
+    .then(({ data }) => {
+      if (data) {
+        store.isLoggedIn = true;
+        store.userData = data;
+        router.push({ name: "home" });
+      }
+    }).catch(error => {
+      console.error(error);
+    });
 };
+
 
 </script>
 

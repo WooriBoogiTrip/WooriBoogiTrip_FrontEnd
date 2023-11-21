@@ -9,10 +9,6 @@ const userinfo = { email: "이메일", nickname: "닉네임", phone: "연락처"
 </script>
 
 <template>
-  <!-- <p>이메일 : {{ userinfo.email }}</p>
-  <p>이름 : {{ userinfo.name }}</p>
-  <p>닉네임 : {{ userinfo.nickname }}</p>
-  <p>연락처 : {{ userinfo.phone }}</p> -->
   <form method="POST">
     <div class="mb-3">
       <label for="formGroupExampleInput" class="form-label">이메일</label>
