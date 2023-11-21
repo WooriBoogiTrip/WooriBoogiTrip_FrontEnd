@@ -1,6 +1,6 @@
 <script setup>
 import { useRouter } from "vue-router";
-import { authorizationStore } from "@/stores/authorization.js";
+import { authorizationStore } from "../../stores/authorization.js";
 const store = authorizationStore();
 
 const router = useRouter();
@@ -12,6 +12,10 @@ const attraction = () => {
 };
 const plan = () => {
   router.push({ name: "plan" });
+};
+
+const logout = () => {
+  store.isLoggedIn = false;
 };
 </script>
 
@@ -53,7 +57,7 @@ const plan = () => {
         </ul>
         <div class="justify-content-end">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <template v-if="store.Authorization == ''">
+            <template v-if="!store.isLoggedIn">
               <li class="nav-item">
                 <router-link :to="{ name: 'login' }" class="nav-link">로그인</router-link>&nbsp;
               </li>
@@ -66,7 +70,7 @@ const plan = () => {
                 <router-link :to="{ name: 'mypage' }" class="nav-link">마이페이지</router-link>
               </li>
               <li class="nav-item">
-                <a hre="#" class="nav-link" @click="store.Authorization = ''">로그아웃</a>
+                <a href="#" class="nav-link" @click="logout">로그아웃</a>
               </li>
             </template>
           </ul>
