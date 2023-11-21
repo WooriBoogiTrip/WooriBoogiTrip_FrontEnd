@@ -5,31 +5,48 @@ import { localaxios } from "../../api/authapi";
 
 const axios = localaxios();
 const router = useRouter();
-
 const userId = ref('');
 const userName = ref('');
 const userPwd = ref('');
 const email = ref('');
 const emailAlert = ref('');
+const pwdAlert = ref('');
 
+const checkEmail = () => {
+  if (!email.value.includes('@')) {
+    emailAlert.value = '@를 포함한 이메일 주소를 입력해주세요';
+  } else {
+    emailAlert.value = '';
+  }
+};
 
-// 회원가입 요청
+const checkPassword = () => {
+  if (userPwd.value.length < 6) {
+    pwdAlert.value = '비밀번호는 6글자 이상이어야 합니다';
+  } else {
+    pwdAlert.value = '';
+  }
+};
+
 const register = () => {
+  checkEmail();
+  checkPassword();
+
+  if (emailAlert.value || pwdAlert.value) {
+    return; 
+  }
+
   axios.post('/api/v1/users/join', {
     userId: userId.value,
     userName: userName.value,
     userPwd: userPwd.value,
     email: email.value
   }).then(response => {
-    // 회원가입 성공 처리
     router.push('/');
   }).catch(error => {
-    // 에러 처리
     console.error(error);
   });
 };
-
-// 여기에 필요한 다른 유효성 검사 함수들을 추가
 </script>
 
 <template>
@@ -45,6 +62,7 @@ const register = () => {
     <div class="mb-3">
       <label for="userPwd" class="form-label">비밀번호</label>
       <input type="password" class="form-control" id="userPwd" v-model="userPwd" />
+      <p>{{ pwdAlert }}</p>
     </div>
     <div class="mb-3">
       <label for="email" class="form-label">이메일</label>

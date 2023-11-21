@@ -7,6 +7,7 @@ import { authorizationStore } from "../../stores/authorization.js";
 const router = useRouter();
 const store = authorizationStore();
 const axios = localaxios();
+const email = ref('');
 const myinfo = ref({ email: "", userId: "", userName: "" });
 const userProfile = ref({ email: "", userId: "", userName: "" });
 
@@ -58,14 +59,27 @@ const updateProfile = () => {
   });
 };
 
+const findPassword = () => {
+  let formData = new FormData();
+  formData.append("email", email.value);
+  axios.post('/api/v1/users/find-password', formData)
+  .then(() => {
+    alert("임시 비밀번호가 이메일로 전송되었습니다.");
+  })
+  .catch(error => {
+    console.error(error);
+    alert("비밀번호 재발급 요청에 실패했습니다.");
+  });
+};
+
 </script>
 
 
 <template>
   <div>
     <h1>My Page</h1>
-    <p>Email: {{ userProfile.email }}</p>
-    <p>User Name: {{ userProfile.userName }}</p>
+    <p>이메일 : {{ userProfile.email }}</p>
+    <p>이름 : {{ userProfile.userName }}</p>
   </div>
   <div>
     <h2>마이페이지 - 프로필 수정</h2>
@@ -79,6 +93,7 @@ const updateProfile = () => {
         <input type="text" class="form-control" id="userName" v-model="userProfile.userName" />
       </div>
       <button type="submit" class="btn btn-primary">업데이트</button>
+      <button @click="findPassword">비밀번호 재발급</button>
     </form>
   </div>
 </template>
