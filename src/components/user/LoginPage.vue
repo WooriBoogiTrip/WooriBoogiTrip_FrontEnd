@@ -8,6 +8,7 @@ const axios = localaxios();
 const router = useRouter();
 const userId = ref('');
 const userPwd = ref('');
+const errorMessage = ref('');
 
 const login = () => {
   let formData = new FormData();
@@ -22,7 +23,11 @@ const login = () => {
         router.push({ name: "home" });
       }
     }).catch(error => {
-      console.error(error);
+      if (error.response && error.response.status === 401) {
+        errorMessage.value = '아이디나 비밀번호가 일치하지 않습니다';
+      } else {
+        errorMessage.value = '로그인 중 오류가 발생했습니다';
+      }
     });
 };
 
@@ -50,6 +55,9 @@ const login = () => {
         placeholder="비밀번호를 입력해주세요"
         v-model="userPwd"
       />
+    </div>
+    <div v-if="errorMessage" class="alert alert-danger">
+      {{ errorMessage }}
     </div>
     <div class="col-12">
       <button @click="login" type="button" class="btn btn-primary">로그인</button>
