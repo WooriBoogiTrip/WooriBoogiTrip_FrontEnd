@@ -20,9 +20,9 @@ const logout = () => {
 </script>
 
 <template>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <nav class="navbar navbar-expand-lg bg-body-lgiht">
     <div class="container-fluid">
-      <a class="navbar-brand" @click="home" href="#">EnjoyTrip</a>
+      <a class="navbar-brand" style='color: #337CCF' @click="home" href="#">우리부기트립</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -37,29 +37,39 @@ const logout = () => {
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" @click="home" href="#">home</a>
+            <a class="nav-link" href="#">공지사항</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" @click="attraction" href="#">attraction</a>
+            <a class="nav-link" @click="attraction" href="#">관광지</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" @click="plan" href="#">plan</a>
+            <a class="nav-link" @click="plan" href="#">여행계획</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/map">map</a>
+            <a class="nav-link" href="#">자유게시판</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/drag">드래그 테스트</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/search">검색 테스트</a>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              여행지도
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">전기차 충전소 지도</a></li>
+              <li><hr class="dropdown-divider" /></li>
+              <li><a class="dropdown-item" href="#">추가할 지도</a></li>
+            </ul>
           </li>
         </ul>
         <div class="justify-content-end">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <template v-if="!store.isLoggedIn">
               <li class="nav-item">
-                <router-link :to="{ name: 'login' }" class="nav-link">로그인</router-link>&nbsp;
+                <router-link :to="{ name: 'login' }" class="nav-link">로그인</router-link>
               </li>
               <li class="nav-item">
                 <router-link :to="{ name: 'usersignup' }" class="nav-link">회원가입</router-link>
@@ -80,4 +90,21 @@ const logout = () => {
   </nav>
 </template>
 
-<style scoped></style>
+<style scoped>
+  .nav-link{
+    font-family: 'basic-B';
+  }
+
+  .navbar-brand{
+    font-family: 'main';
+    font-size: 26px;
+  }
+
+  .collapse navbar-collapse{
+    height: 64px;
+  }
+
+  .nav-item{
+    align-self: center;
+  }
+</style>
