@@ -4,6 +4,7 @@ import PlanView from "../views/PlanView.vue";
 import PostView from "../views/PostView.vue";
 import HomeView from "../views/HomeView.vue";
 import UserView from "../views/UserView.vue";
+import WeatherView from "../views/WeatherView.vue";
 import PlanWrite from "../components/plan/PlanWrite.vue";
 import PostDetail from "../components/post/PostDetail.vue";
 import PostRegist from "../components/post/PostRegist.vue";
@@ -24,6 +25,11 @@ const router = createRouter({
   routes: [
     {
       path: "/",
+      name: "home",
+      component: HomeView,
+    },
+    {
+      path: "/home",
       name: "home",
       component: HomeView,
     },
@@ -130,16 +136,6 @@ const router = createRouter({
       path: "/map",
       name: "map",
       component: () => import("../components/map/ShowMap.vue"),
-    },
-    {
-      path: "/drag",
-      name: "drag",
-      component: () => import("../components/dragtest/DragTest.vue"),
-    },
-    {
-      path: "/search",
-      name: "search",
-      component: () => import("../components/plan/PlanSearch.vue"),
     },
   ],
 });
