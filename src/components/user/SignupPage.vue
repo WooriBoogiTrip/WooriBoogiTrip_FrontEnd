@@ -52,7 +52,7 @@ const register = () => {
 <template>
   <form method="POST">
     <div class="mb-3">
-      <label for="userId" class="form-label">사용자 ID</label>
+      <label for="userId" class="form-label">아이디</label>
       <input type="text" class="form-control" id="userId" v-model="userId" />
     </div>
     <div class="mb-3">
