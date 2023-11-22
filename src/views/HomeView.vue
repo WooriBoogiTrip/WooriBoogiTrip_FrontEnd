@@ -12,7 +12,7 @@ import WeatherView from "./WeatherView.vue";
   <br>
   <br>
   <p class="text-center" style='color: #39A7FF' id="notice-section">
-    <h2>오늘의 날씨 정보</h2>
+    <h2>지금 부산은</h2>
       <WeatherView></WeatherView>
   </p>
   <br>
