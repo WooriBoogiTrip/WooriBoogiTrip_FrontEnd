@@ -2,39 +2,34 @@
 import { onMounted, ref, watch } from "vue";
 import { localaxios } from "../../api/authapi";
 const axios = localaxios();
-const sidos = ref();
 const guguns = ref();
 const props = defineProps({
   page: Number,
 });
 const condition = ref({
-  sidoCode: "0",
   gugunCode: "0",
   contentTypeId: "0",
   keyword: "",
-  page: 0,
+  // page: 0,
 });
-const getSido = () => {
-  axios.get("/attraction/sido").then(({ data }) => {
-    if (data.success === true) {
-      sidos.value = data.list;
-    }
+const gugunload = () => {
+  axios.get("/api/v1/attractions/gugun").then(({ data }) => {
+    guguns.value = data;
   });
 };
+// watch(
+//   () => props.page,
+//   () => {
+//     console.log(props.page);
+//     condition.value.page = props.page;
+//     // if (props.page != 0) {
+//     // }
+//     search();
+//   },
+//   { deep: true },
+// );
 watch(
-  () => props.page,
   () => {
-    console.log(props.page);
-    condition.value.page = props.page;
-    // if (props.page != 0) {
-    // }
-    search();
-  },
-  { deep: true },
-);
-watch(
-  () => {
-    condition.value.sidoCode;
     condition.value.gugunCode;
     condition.value.contentTypeId;
     condition.value.keyword;
@@ -46,34 +41,27 @@ watch(
 );
 
 onMounted(() => {
-  getSido();
+  gugunload();
   search();
 });
 
-const gugunload = () => {
-  axios.get("/attraction/gugun/" + condition.value.sidoCode).then(({ data }) => {
-    if (data.success === true) {
-      guguns.value = data.list;
-    }
-  });
-};
-
 const search = () => {
   axios
-    .get("/attraction/list", {
+    .get("/api/v1/attractions/list", {
       params: condition.value,
     })
     .then(({ data }) => {
-      console.log("search 요청!!!");
       console.log(condition.value);
-      if (data.success === true) {
-        emit("getlist", data.list);
-      }
+      emit("getlist", data);
+    })
+    .catch((error) => {
+      console.log(error);
     });
 };
+
 const reset = () => {
+  search();
   emit("reset");
-  search;
 };
 
 const emit = defineEmits(["getlist", "reset"]);
@@ -84,15 +72,8 @@ const emit = defineEmits(["getlist", "reset"]);
     <select
       id="search-area"
       class="form-select me-2"
-      @change="gugunload()"
-      v-model="condition.sidoCode"
+      v-model="condition.gugunCode"
     >
-      <option value="0" selected>시도 선택</option>
-      <option :value="sido.sidoCode" v-for="sido in sidos" :key="sido.sidoCode">
-        {{ sido.sidoName }}
-      </option>
-    </select>
-    <select id="search-area-gugun" class="form-select me-2" v-model="condition.gugunCode">
       <option value="0" selected>구군 선택</option>
       <option :value="gugun.gugunCode" v-for="gugun in guguns" :key="gugun.gugunCode">
         {{ gugun.gugunName }}
@@ -116,10 +97,12 @@ const emit = defineEmits(["getlist", "reset"]);
       placeholder="검색어"
       aria-label="검색어"
       v-model.lazy="condition.keyword"
+      @keydown.enter.prevent=""
     />
     <button id="btn-search" class="btn btn-outline-success" type="button" @click="reset">
       검색
     </button>
+
   </form>
 </template>
 

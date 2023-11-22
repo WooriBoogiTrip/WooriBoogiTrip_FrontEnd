@@ -11,6 +11,7 @@ const userPwd = ref('');
 const email = ref('');
 const emailAlert = ref('');
 const pwdAlert = ref('');
+const userIdAlert = ref('');
 
 const checkEmail = () => {
   if (!email.value.includes('@')) {
