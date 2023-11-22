@@ -1,0 +1,35 @@
+@font-face {
+    font-family: "basic-B";
+    font-style: nomal;
+    font-weight: 100;
+    src:url('../../../public/fonts/NanumSquareRoundB.ttf')
+}
+
+@font-face {
+    font-family: "basic-EB";
+    font-style: nomal;
+    font-weight: 100;
+    src:url('../../../public/fonts/NanumSquareRoundEB.ttf')
+}
+
+@font-face {
+    font-family: "basic-L";
+    font-style: nomal;
+    font-weight: 100;
+    src:url('../../../public/fonts/NanumSquareRoundL.ttf')
+}
+
+@font-face {
+    font-family: "basic-R";
+    font-style: nomal;
+    font-weight: 100;
+    src:url('../../../public/fonts/NanumSquareRoundR.ttf')
+}
+
+
+@font-face {
+    font-family: "main";
+    font-style: nomal;
+    font-weight: 100;
+    src:url('../../../public/fonts/establish Retrosans.ttf')
+}

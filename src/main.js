@@ -6,9 +6,14 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import InfiniteLoading from "v3-infinite-loading";
 import "v3-infinite-loading/lib/style.css";
 
+
 import App from "./App.vue";
 import router from "./router";
+import "@/assets/css/fonts.css"
+
 const app = createApp(App);
+
+
 
 app.use(createPinia());
 app.use(router);
