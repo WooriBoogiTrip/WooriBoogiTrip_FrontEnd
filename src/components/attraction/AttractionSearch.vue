@@ -13,7 +13,7 @@ const condition = ref({
   // page: 0,
 });
 const gugunload = () => {
-  axios.get("/api/v1/attractions/gugun").then(({ data }) => {
+  axios.get("/api/v1/attractions/gugun_fake").then(({ data }) => {
     guguns.value = data;
   });
 };
