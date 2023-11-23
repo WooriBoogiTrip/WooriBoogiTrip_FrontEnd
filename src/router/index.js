@@ -10,7 +10,6 @@ import PlanWrite from "../components/plan/PlanWrite.vue";
 import PostDetail from "../components/post/PostDetail.vue";
 import PostRegist from "../components/post/PostRegist.vue";
 import PostUpdate from "../components/post/PostUpdate.vue";
-import SignupResult from "../components/user/SignupResult.vue";
 import SignupPage from "../components/user/SignupPage.vue";
 import LoginPage from "../components/user/LoginPage.vue";
 import ModifyPage from "../components/user/ModifyPage.vue";
@@ -125,11 +124,6 @@ const router = createRouter({
           path: "signup",
           name: "usersignup",
           component: SignupPage,
-        },
-        {
-          path: "signup/result",
-          name: "usersignupresult",
-          component: SignupResult,
         },
         {
           path: "mypage",

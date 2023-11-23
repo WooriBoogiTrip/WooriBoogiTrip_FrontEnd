@@ -53,7 +53,7 @@ const load = async (state) => {
           />
           <div class="card-body">
             <h5 class="card-title">
-              <router-link :to="'/post/' + item.contentId">{{ item.title }}</router-link>
+              {{ item.title }}
             </h5>
             <p>{{ item.addr1 || item.addr2 || '주소가 없습니다' }}</p>
             <div class="button-container">
@@ -84,26 +84,57 @@ const load = async (state) => {
 </template>
 
 <style scoped>
+.row {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.col {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-bottom: 30px; /* 관광지 카드 사이의 공간을 늘립니다 */
+}
+
+  #map {
+    width: 100%;
+    height: 700px;
+    margin-bottom: 30px; /* 지도 아래에 간격 추가 */
+  }
 .card {
   padding: 15px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border-radius: 5px; 
+  border-radius: 10px;
+  background: #ffffff;
+  border: 2px solid #87C4FF; /* 테두리 색상 변경 */
 }
 
 .card:hover {
-  transform: scale(1.05); 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-10px); /* 호버 시 약간 위로 이동 */
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2); /* 그림자 효과 강조 */
+}
+
+.card-img-top {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  object-fit: cover; /* 이미지 비율 유지 */
+  height: 200px; /* 이미지 높이 통일 */
 }
 
 .card-title {
   font-weight: bold;
-  color: #0275d8; 
-  margin-bottom: 10px;
+  color: #0275d8;
+  margin-bottom: 15px; /* 제목과 내용 사이의 간격 늘림 */
 }
 
 .card-text {
   color: #555;
   margin-top: 10px;
+  line-height: 1.5; /* 줄 간격 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* 최대 3줄까지만 표시 */
+  -webkit-box-orient: vertical;
 }
 
 .card p {
@@ -115,19 +146,20 @@ const load = async (state) => {
   display: flex;
   justify-content: space-between;
   margin-top: 15px;
+  align-items: center;
 }
 
 button {
   border: none;
   border-radius: 5px;
-  padding: 8px 15px;
-  font-size: 14px;
+  padding: 10px 20px;
+  font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
 }
 
 button.primary {
-  background-color: #0275d8; 
+  background-color: #0275d8;
   color: white;
 }
 
@@ -136,7 +168,7 @@ button.primary:hover {
 }
 
 button.secondary {
-  background-color: #f8f9fa; 
+  background-color: #f8f9fa;
   color: #333;
 }
 
