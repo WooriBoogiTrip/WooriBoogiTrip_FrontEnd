@@ -5,6 +5,7 @@ import PostView from "../views/PostView.vue";
 import HomeView from "../views/HomeView.vue";
 import UserView from "../views/UserView.vue";
 import WeatherView from "../views/WeatherView.vue";
+import ElectricChargingStationView from "../views/ElectricChargingStationView.vue";
 import PlanWrite from "../components/plan/PlanWrite.vue";
 import PostDetail from "../components/post/PostDetail.vue";
 import PostRegist from "../components/post/PostRegist.vue";
@@ -38,7 +39,12 @@ const router = createRouter({
       name: "attraction",
       component: AttractionView,
     },
-
+    {
+      path: "/estations",
+      name: "estations",
+      // beforeEnter: onlyAuthUser,
+      component: ElectricChargingStationView,
+    },
     {
       path: "/plan",
       name: "plan",

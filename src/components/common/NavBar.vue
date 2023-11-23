@@ -59,7 +59,7 @@ const logout = () => {
               여행지도
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">전기차 충전소 지도</a></li>
+              <li><router-link :to="{ name: 'estations' }" class="dropdown-item">전기차충전소</router-link></li>
               <li><hr class="dropdown-divider" /></li>
               <li><a class="dropdown-item" href="#">추가할 지도</a></li>
             </ul>
