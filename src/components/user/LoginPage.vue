@@ -37,7 +37,7 @@ const login = () => {
 <template>
   <form method="POST">
     <div class="mb-3">
-      <label for="userIdInput" class="form-label">사용자 ID</label>
+      <label for="userIdInput" class="form-label">아이디</label>
       <input
         type="text"
         class="form-control"
@@ -66,4 +66,33 @@ const login = () => {
 
 </template>
 
-<style scoped></style>
+<style scoped>
+#userIdInput, #userPwdInput {
+  border: 2px solid #337CCF;
+  border-radius: 4px;
+}
+
+.form-label {
+  color: #1450A3;
+}
+
+.btn-primary {
+  background-color: #337CCF;
+  border: none;
+}
+
+.alert-danger {
+  background-color: #1450A3;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+form {
+  max-width: 500px;
+  margin: auto;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+</style>
+

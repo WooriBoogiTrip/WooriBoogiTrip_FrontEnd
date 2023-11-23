@@ -51,7 +51,6 @@ const search = () => {
       params: condition.value,
     })
     .then(({ data }) => {
-      console.log(condition.value);
       emit("getlist", data);
     })
     .catch((error) => {
@@ -106,4 +105,52 @@ const emit = defineEmits(["getlist", "reset"]);
   </form>
 </template>
 
-<style scoped></style>
+
+<style scoped>
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #87C4FF; 
+  color: #333;
+}
+
+.form-select, .form-control, .btn {
+  border-radius: 5px;
+  border: 1px solid #87C4FF;
+}
+
+.btn {
+  background-color: #39A7FF;
+  color: white;
+}
+
+.btn:hover {
+  background-color: #39A7FF; 
+}
+
+.card {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  margin-bottom: 20px;
+}
+
+.card-img-top {
+  width: 100%;
+  height: auto;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.card-title {
+  color: #39A7FF; 
+}
+
+.card-body {
+  padding: 15px;
+}
+
+h5, p {
+  margin-bottom: 10px;
+}
+
+</style>

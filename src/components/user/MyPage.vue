@@ -61,7 +61,7 @@ const updateProfile = () => {
 
 const findPassword = () => {
   let formData = new FormData();
-  formData.append("email", email.value);
+  formData.append("email", userProfile.value.email);
   axios.post('/api/v1/users/find-password', formData)
   .then(() => {
     alert("임시 비밀번호가 이메일로 전송되었습니다.");
@@ -77,12 +77,6 @@ const findPassword = () => {
 
 <template>
   <div>
-    <h1>My Page</h1>
-    <p>이메일 : {{ userProfile.email }}</p>
-    <p>이름 : {{ userProfile.userName }}</p>
-  </div>
-  <div>
-    <h2>마이페이지 - 프로필 수정</h2>
     <form @submit.prevent="updateProfile">
       <div class="mb-3">
         <label for="email" class="form-label">이메일</label>
@@ -93,10 +87,48 @@ const findPassword = () => {
         <input type="text" class="form-control" id="userName" v-model="userProfile.userName" />
       </div>
       <button type="submit" class="btn btn-primary">업데이트</button>
-      <button @click="findPassword">비밀번호 재발급</button>
+      <button class="btn btn-primary" @click="findPassword">비밀번호 재발급</button>
     </form>
   </div>
 </template>
 
 
-<style scoped></style>
+<style scoped>
+h1, h2 {
+  color: #1450A3;
+}
+
+.form-label {
+  color: #1450A3;
+}
+
+.form-control {
+  border: 2px solid #337CCF;
+  border-radius: 4px;
+}
+
+.btn {
+  background-color: #337CCF;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #1450A3;
+}
+
+div {
+  margin-bottom: 20px;
+}
+
+form {
+  max-width: 500px;
+  margin: auto;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+</style>
