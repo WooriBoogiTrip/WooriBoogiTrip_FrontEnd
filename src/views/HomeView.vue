@@ -11,15 +11,17 @@ import WeatherView from "./WeatherView.vue";
   </p>
   <br>
   <br>
-  <p class="text-center" style='color: #39A7FF' id="notice-section">
-    <h2>지금 부산은</h2>
-      <WeatherView></WeatherView>
-  </p>
-  <br>
-  <br>
-  <p class="text-center" id="notice-section">
-    <h2>공지사항</h2>
-  </p>
+  <div class="cards d-flex justify-content-evenly">
+    <p class="cards text-center" style='color: #39A7FF' id="notice-section">
+      <h2>지금 부산은</h2>
+        <WeatherView></WeatherView>
+    </p>
+    <br>
+    <br>
+    <p class="cards text-center" id="notice-section">
+      <h2>공지사항</h2>
+    </p>
+  </div>
   <router-view></router-view>
 
 </template>

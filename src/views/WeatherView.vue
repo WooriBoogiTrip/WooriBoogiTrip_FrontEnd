@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, h } from "vue";
+import { ref, onMounted } from "vue";
 import { infoSunrise, infoWeather } from "@/api/weather";
 
 const { VITE_OPEN_API_SERVICE_KEY } = import.meta.env; 
@@ -15,7 +15,7 @@ let today= new Date();
 const month=today.getMonth();
 const date=today.getDate();
 let day=ref();
-let todayStr=today.getFullYear().toString()+today.getMonth().toString()+today.getDate().toString();
+let todayStr=today.getFullYear().toString()+(today.getMonth()+1)+today.getDate().toString();
 let hour=today.getHours()
 
 
@@ -30,10 +30,10 @@ const weatherParam = ref({
   pageNo:"1",
   numOfRows:"30",
   dataType:"JSON",
-  base_date:"20231122",
+  base_date:todayStr,
   base_time: calcTime().toString(),
-  nx:"55",
-  ny:"127",
+  nx:97,
+  ny:74,
 })
 
 function calcTime() {
@@ -50,78 +50,78 @@ function calcTime() {
 function skyCategory() {
     switch (skyData.value.fcstValue){
     case "1" :  
-      skyText="맑음"
+      skyText.value="맑음"
       break; 
       
-    case "2" :
-      skyText="구름많음"
+    case "3" :
+      skyText.value="구름많음"
       break;
     
-    case "3" :
-      skyText="흐림"
+    case "4" :
+      skyText.value="흐림"
       break;
       
     default: 
-      skyText="-";
+      skyText.value="-";
   }
 }
 
 function rainCategory() {
   switch (rainData.value.fcstValue){
     case "0" :  
-      rainText="X"
+      rainText.value="X"
       break; 
     case "1" :  
-      rainText="비"
+      rainText.value="비"
       break;      
     case "2" :
-      rainText="비/눈"
+      rainText.value="비/눈"
       break;   
     case "3" :
-      rainText="눈"
+      rainText.value="눈"
       break;   
     case "4" :  
-      rainText="소나기"
+      rainText.value="소나기"
       break;   
     case "5" :  
-      rainText="빗방울"
+      rainText.value="빗방울"
       break;
     case "6" :  
-      rainText="빗방울눈날림"
+      rainText.value="빗방울눈날림"
       break;
     case "7" :  
-      rainText="눈날림"
+      rainText.value="눈날림"
       break;
      default: 
-      rainText="-";
+      rainText.value="-";
   }
 }
 
 function dateCategory() {
   switch (today.getDay()){
     case 1 :  
-      day="월"
+      day.value="월"
       break;    
     case 2 :
-      day="화"
+      day.value="화"
       break;   
     case 3 :
-      day="수"
+      day.value="수"
       break;   
     case 4 :  
-      day="목"
+      day.value="목"
       break;   
     case 5 :  
-      day="금"
+      day.value="금"
       break;
     case 6 :  
-      day="토"
+      day.value="토"
       break;
     case 7 :  
-      day="일"
+      day.value="일"
       break;
     default: 
-      day="-";
+      day.value="-";
   }
 }
 
@@ -183,7 +183,7 @@ const getWeatherInfo = () => {
 <template>
 <div class="card mx-auto d-block" id="weatherInfo" style="width: 18rem;">
   <div class="card-body">
-    <p>{{ month }}/{{date}}({{ day }})</p>
+    <p>{{ month+1 }}/{{date}}({{ day }})</p>
     <br>
     <h5 class="card-title" style="font-family: basic-B;">날씨 정보</h5>
     <div v-if="rainText">
