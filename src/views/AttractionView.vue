@@ -43,6 +43,8 @@ const updateModalInfo = (info) => {
 </script>
 
 <template>
+    <div class="container text-center mt-3">
+    <h2 class="title-text">관광지 지도</h2>
   <Teleport to="body">
     <VModal
       :show="store.modalstate"
@@ -52,6 +54,8 @@ const updateModalInfo = (info) => {
   </Teleport>
   <AttractionSearch @getlist="appendAttractions" @reset="resetAttractionList" :page="currentPage" />
   <AttractionMap :attractionlist="attractionList" @modal="updateModalInfo" />
+  <br>
+  <br>
   <AttractionList
     v-if="attractionList.length"
     :list="attractionList"
@@ -61,6 +65,7 @@ const updateModalInfo = (info) => {
     :changestate="isChangeState"
     :loadstate="isLoadState"
   />
+  </div>
 </template>
 
 <style scoped></style>

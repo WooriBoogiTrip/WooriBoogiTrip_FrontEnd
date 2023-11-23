@@ -13,20 +13,8 @@ const props = defineProps({
 });
 const emit = defineEmits(["modal", "addattraction", "load"]);
 
-const handleItemAction = (item, actionType) => {
-  const newInfo = {
-    id: item.contentId,
-    title: item.title,
-    addr: item.addr1,
-    firstImage: item.firstImage,
-    overview: item.overview,
-  };
-
-  if (actionType === 'modal') {
-    store.modalstate = true;
-  }
-
-  emit(actionType, newInfo);
+const handleItemAction = (item) => {
+  window.open("https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query="+item.title)
 };
 
 const load = async (state) => {
@@ -45,9 +33,9 @@ const load = async (state) => {
       <div class="col">
         <div class="card">
           <img
-            :src="item.firstImage || 'https://img.icons8.com/office/80/no-image.png'"
+            :src="item.firstImage || 'src/assets/img/준비중.png'"
             class="card-img-top"
-            @click="() => handleItemAction(item, 'modal')"
+            @click="() => handleItemAction(item)"
             data-bs-toggle="modal"
             data-bs-target="#staticBackdrop"
           />
@@ -56,20 +44,18 @@ const load = async (state) => {
               {{ item.title }}
             </h5>
             <p>{{ item.addr1 || item.addr2 || '주소가 없습니다' }}</p>
-            <div class="button-container">
-              <button
+            <div class="text-center">
+              <button 
                 class="secondary"
-                :id="props.type === 'attraction' ? 'show-modal' : ''"
-                @click="() => handleItemAction(item, props.type === 'attraction' ? 'modal' : 'addattraction')"
+                @click="() => handleItemAction(item)"
               >
-                {{ props.type === 'attraction' ? '모달 보기' : '추가하기' }}
+              검색하기
               </button>
             </div>
             <p class="card-text" v-show="item.show">
               {{ item.overview }}
             </p>
           </div>
-
         </div>
       </div>
     </template>
@@ -105,7 +91,7 @@ const load = async (state) => {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border-radius: 10px;
   background: #ffffff;
-  border: 2px solid #87C4FF; /* 테두리 색상 변경 */
+  border: 1px solid #87C4FF; /* 테두리 색상 변경 */
 }
 
 .card:hover {
@@ -114,8 +100,7 @@ const load = async (state) => {
 }
 
 .card-img-top {
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  border-radius: 10px;
   object-fit: cover; /* 이미지 비율 유지 */
   height: 200px; /* 이미지 높이 통일 */
 }

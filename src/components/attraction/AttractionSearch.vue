@@ -67,7 +67,7 @@ const emit = defineEmits(["getlist", "reset"]);
 </script>
 
 <template>
-  <form class="d-flex my-3">
+  <form class="d-flex my-4">
     <select
       id="search-area"
       class="form-select me-2"
@@ -98,9 +98,11 @@ const emit = defineEmits(["getlist", "reset"]);
       v-model.lazy="condition.keyword"
       @keydown.enter.prevent=""
     />
+    <div class="mx-auto d-block" style="width: 200px;">
     <button id="btn-search" class="btn btn-outline-success" type="button" @click="reset">
       검색
     </button>
+    </div>
 
   </form>
 </template>
@@ -113,44 +115,16 @@ body {
   color: #333;
 }
 
-.form-select, .form-control, .btn {
-  border-radius: 5px;
-  border: 1px solid #87C4FF;
-}
 
 .btn {
-  background-color: #39A7FF;
-  color: white;
+  color: black;
+  border-color: gray;
 }
 
 .btn:hover {
+  color: white;
   background-color: #39A7FF; 
-}
-
-.card {
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: white;
-  margin-bottom: 20px;
-}
-
-.card-img-top {
-  width: 100%;
-  height: auto;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
-
-.card-title {
-  color: #39A7FF; 
-}
-
-.card-body {
-  padding: 15px;
-}
-
-h5, p {
-  margin-bottom: 10px;
+  border-color: white;
 }
 
 </style>
