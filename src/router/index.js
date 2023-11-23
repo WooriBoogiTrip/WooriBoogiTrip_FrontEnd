@@ -4,7 +4,6 @@ import PlanView from "../views/PlanView.vue";
 import PostView from "../views/PostView.vue";
 import HomeView from "../views/HomeView.vue";
 import UserView from "../views/UserView.vue";
-import WeatherView from "../views/WeatherView.vue";
 import ElectricChargingStationView from "../views/ElectricChargingStationView.vue";
 import PlanWrite from "../components/plan/PlanWrite.vue";
 import PostDetail from "../components/post/PostDetail.vue";
@@ -43,6 +42,38 @@ const router = createRouter({
       name: "estations",
       // beforeEnter: onlyAuthUser,
       component: ElectricChargingStationView,
+    },
+    {
+      path: "/board",
+      name: "board",
+      // component: TheBoardView,
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import("../views/BoardView.vue"),
+      redirect: { name: "article-list" },
+      children: [
+        {
+          path: "list",
+          name: "article-list",
+          component: () => import("@/components/boards/BoardList.vue"),
+        },
+        {
+          path: "view/:articleno",
+          name: "article-view",
+          component: () => import("@/components/boards/BoardDetail.vue"),
+        },
+        {
+          path: "write",
+          name: "article-write",
+          component: () => import("@/components/boards/BoardWrite.vue"),
+        },
+        {
+          path: "modify/:articleno",
+          name: "article-modify",
+          component: () => import("@/components/boards/BoardModify.vue"),
+        },
+      ],
     },
     {
       path: "/plan",

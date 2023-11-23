@@ -46,7 +46,7 @@ const logout = () => {
             <a class="nav-link" @click="plan" href="#">여행계획</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">자유게시판</a>
+            <router-link :to="{ name: 'board' }" class="nav-link">자유게시판</router-link>
           </li>
           <li class="nav-item dropdown">
             <a
