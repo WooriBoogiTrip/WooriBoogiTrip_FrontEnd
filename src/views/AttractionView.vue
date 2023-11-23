@@ -51,10 +51,7 @@ const updateModalInfo = (info) => {
     />
   </Teleport>
   <AttractionSearch @getlist="appendAttractions" @reset="resetAttractionList" :page="currentPage" />
-  <div>----------------</div>
-  <h3>지도 출력</h3>
   <AttractionMap :attractionlist="attractionList" @modal="updateModalInfo" />
-  <div>----------------</div>
   <AttractionList
     v-if="attractionList.length"
     :list="attractionList"

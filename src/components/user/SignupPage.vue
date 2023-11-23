@@ -75,4 +75,37 @@ const register = () => {
   </form>
 </template>
 
-<style scoped></style>
+<style scoped>
+.form-label {
+  color: #1450A3;
+}
+
+.form-control {
+  border: 2px solid #337CCF;
+  border-radius: 4px;
+}
+
+.btn-primary {
+  background-color: #337CCF;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #1450A3;
+}
+
+p {
+  color: red;
+}
+
+form {
+  max-width: 500px;
+  margin: auto;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+</style>

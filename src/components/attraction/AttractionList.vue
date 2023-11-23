@@ -57,7 +57,6 @@ const load = async (state) => {
             </h5>
             <p>{{ item.addr1 || item.addr2 || '주소가 없습니다' }}</p>
             <div class="button-container">
-              <button class="primary" @click="item.show = !item.show">내용보기</button>
               <button
                 class="secondary"
                 :id="props.type === 'attraction' ? 'show-modal' : ''"
