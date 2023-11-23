@@ -86,6 +86,8 @@ const loadMarkers = () => {
     markers.value.push(marker);
   });
 
+  
+
   // 4. 지도를 이동시켜주기
   // 배열.reduce( (누적값, 현재값, 인덱스, 요소)=>{ return 결과값}, 초기값);
   const bounds = positions.value.reduce(

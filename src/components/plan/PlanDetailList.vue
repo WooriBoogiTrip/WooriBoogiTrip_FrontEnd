@@ -13,7 +13,6 @@ const emit = defineEmits(["list", "del"]);
 watch(
   () => props.item,
   () => {
-    console.log("감지!!");
     console.log(props.item.value);
     list.value.push(props.item.value);
   },

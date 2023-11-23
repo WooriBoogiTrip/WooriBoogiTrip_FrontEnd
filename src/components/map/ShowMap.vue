@@ -23,11 +23,8 @@ onMounted(() => {
   }
 });
 
-
-
 watchEffect(() => {
   if (props.attractionlist && map) {
-    console.log(">.<");
     loadMarkers();
   }
 });
@@ -42,11 +39,15 @@ const initMap = () => {
 };
 
 const loadMarkers = () => {
+  deleteMarkers(); // 기존 마커 삭제
 
+  // 마커 위치 정보를 저장하기 위한 LatLngBounds 객체 생성
+  const bounds = new kakao.maps.LatLngBounds();
 
-  deleteMarkers();
   markers.value = props.attractionlist.map(attraction => {
     const position = new kakao.maps.LatLng(attraction.latitude, attraction.longitude);
+    bounds.extend(position); // LatLngBounds 객체에 마커 위치 추가
+
     const marker = new kakao.maps.Marker({
       map: map,
       position: position,
@@ -59,8 +60,9 @@ const loadMarkers = () => {
 
     return marker;
   });
-
-  // 지도 범위 설정 로직...
+  console.log(bounds);
+  // 지도 화면을 모든 마커가 포함되도록 조정
+  map.setBounds(bounds);
 };
 
 const deleteMarkers = () => {
