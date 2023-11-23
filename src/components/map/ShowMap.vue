@@ -1,8 +1,10 @@
 <script setup>
 import { ref, onMounted, defineProps, watchEffect, defineEmits } from "vue";
 
+const { VITE_KAKAO_MAP_SERVICE_KEY } = import.meta.env; 
+
 const props = defineProps({
-  attractionList: Array
+  attractionlist: Array
 });
 
 const emit = defineEmits(['modal']);
@@ -15,14 +17,17 @@ onMounted(() => {
     initMap();
   } else {
     const script = document.createElement("script");
-    script.src = `//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=5397646f0d588267a857aa5ebcc6eee1&libraries=services,clusterer`;
+    script.src = `//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${VITE_KAKAO_MAP_SERVICE_KEY}&libraries=services,clusterer`;
     script.onload = () => kakao.maps.load(() => initMap());
     document.head.appendChild(script);
   }
 });
 
+
+
 watchEffect(() => {
-  if (props.attractionList && map) {
+  if (props.attractionlist && map) {
+    console.log(">.<");
     loadMarkers();
   }
 });
@@ -37,8 +42,10 @@ const initMap = () => {
 };
 
 const loadMarkers = () => {
+
+
   deleteMarkers();
-  markers.value = props.attractionList.map(attraction => {
+  markers.value = props.attractionlist.map(attraction => {
     const position = new kakao.maps.LatLng(attraction.latitude, attraction.longitude);
     const marker = new kakao.maps.Marker({
       map: map,

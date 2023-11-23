@@ -5,6 +5,8 @@ var map;
 const positions = ref([]);
 const markers = ref([]);
 
+const { VITE_KAKAO_MAP_SERVICE_KEY } = import.meta.env; 
+
 const props = defineProps({ stations: Array, selectStation: Object });
 
 watch(
@@ -26,7 +28,7 @@ onMounted(() => {
   } else {
     const script = document.createElement("script");
     script.src = `//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${
-      import.meta.env.VITE_KAKAO_MAP_SERVICE_KEY
+      VITE_KAKAO_MAP_SERVICE_KEY
     }&libraries=services,clusterer`;
     /* global kakao */
     script.onload = () => kakao.maps.load(() => initMap());
