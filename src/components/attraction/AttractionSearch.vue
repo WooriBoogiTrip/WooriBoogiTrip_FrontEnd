@@ -122,9 +122,9 @@ body {
 }
 
 .btn:hover {
-  color: white;
-  background-color: #39A7FF; 
-  border-color: white;
+  color: black;
+  background-color: rgba(197, 197, 197, 0.348); 
+  border-color: black;
 }
 
 </style>

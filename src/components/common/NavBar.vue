@@ -37,13 +37,7 @@ const logout = () => {
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="#">공지사항</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" @click="attraction" href="#">관광지</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" @click="plan" href="#">여행계획</a>
           </li>
           <li class="nav-item">
             <router-link :to="{ name: 'board' }" class="nav-link">자유게시판</router-link>
@@ -56,12 +50,12 @@ const logout = () => {
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              여행지도
+              여행정보
             </a>
             <ul class="dropdown-menu">
-              <li><router-link :to="{ name: 'estations' }" class="dropdown-item">전기차충전소</router-link></li>
+              <li><router-link :to="{ name: 'estations' }" class="dropdown-item">전기차충전소 지도</router-link></li>
               <li><hr class="dropdown-divider" /></li>
-              <li><a class="dropdown-item" href="#">추가할 지도</a></li>
+              <li><a class="dropdown-item" href="#">부산 날씨 정보</a></li>
             </ul>
           </li>
         </ul>

@@ -55,14 +55,9 @@ function onDeleteArticle() {
 <template>
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-lg-10">
-        <h2 class="my-3 py-3 shadow-sm bg-light text-center">
-          <mark class="sky">글보기</mark>
-        </h2>
-      </div>
       <div class="col-lg-10 text-start">
         <div class="row my-2">
-          <h2 class="text-secondary px-5">{{ article.articleNo }}. {{ article.subject }}</h2>
+          <h2 class="text-secondary px-2" style="color: black;">{{ article.articleNo }}. {{ article.subject }}</h2>
         </div>
         <div class="row">
           <div class="col-md-8">
@@ -79,7 +74,7 @@ function onDeleteArticle() {
               </p>
             </div>
           </div>
-          <div class="col-md-4 align-self-center text-end">댓글 : 17</div>
+          <div class="col-md-4 align-self-center text-end"></div>
           <div class="divider mb-3"></div>
           <div class="text-secondary">
             {{ article.content }}
@@ -102,4 +97,16 @@ function onDeleteArticle() {
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+
+.btn {
+  color: black;
+  border-color: gray;
+}
+
+.btn:hover {
+  color: black;
+  background-color: rgba(197, 197, 197, 0.348); 
+  border-color: black;
+}
+</style>

@@ -7,6 +7,9 @@ import VSelect from "@/components/common/VSelect.vue";
 import BoardListItem from "@/components/boards/item/BoardListItem.vue";
 import VPageNavigation from "@/components/common/VPageNavigation.vue";
 
+import { authorizationStore } from "../../stores/authorization.js";
+const store = authorizationStore();
+
 const router = useRouter();
 
 const selectOption = ref([
@@ -61,20 +64,34 @@ const onPageChange = (val) => {
 const moveWrite = () => {
   router.push({ name: "article-write" });
 };
+
+
+const requestLogin = () => {
+  console.log("test");
+  if(!store.isLoggedIn){
+      let msg = "글등록은 로그인 후 가능합니다.";
+      alert(msg);
+      moveLogin();
+  } else {
+    moveWrite();
+  }
+};
+
+function moveLogin() {
+  router.push({ name: "login" });
+}
+
+
+
 </script>
 
 <template>
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-10">
-        <h2 class="my-3 py-3 shadow-sm bg-light text-center">
-          <mark class="sky">글목록</mark>
-        </h2>
-      </div>
-      <div class="col-lg-10">
         <div class="row align-self-center mb-2">
           <div class="col-md-2 text-start">
-            <button type="button" class="btn btn-outline-primary btn-sm" @click="moveWrite">
+            <button type="button" class="btn btn-outline-primary btn-sm" @click="requestLogin">
               글쓰기
             </button>
           </div>
@@ -121,4 +138,16 @@ const moveWrite = () => {
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+
+.btn {
+  color: black;
+  background-color: white; 
+  border-color: black;
+}
+.btn:hover {
+  color: black;
+  background-color: rgba(211, 211, 211, 0.581); 
+  border-color: black;
+}
+</style>

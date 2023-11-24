@@ -2,6 +2,9 @@
 import { ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { registArticle, getModifyArticle, modifyArticle } from "@/api/board";
+import { authorizationStore } from "@/stores/authorization.js";
+
+const store = authorizationStore();
 
 const router = useRouter();
 const route = useRoute();
@@ -10,12 +13,13 @@ const props = defineProps({ type: String });
 
 const isUseId = ref(false);
 
+
 const article = ref({
   articleNo: 0,
   subject: "",
   content: "",
-  userId: "",
-  userName: "",
+  userId: store.userData.userId,
+  userName: store.userData.userName,
   hit: 0,
   registerTime: "",
 });
@@ -104,6 +108,8 @@ function updateArticle() {
 function moveList() {
   router.push({ name: "article-list" });
 }
+
+
 </script>
 
 <template>
@@ -111,11 +117,9 @@ function moveList() {
     <div class="mb-3">
       <label for="userid" class="form-label">작성자 ID : </label>
       <input
-        type="text"
+        type="text" disabled
         class="form-control"
-        v-model="article.userId"
-        :disabled="isUseId"
-        placeholder="작성자ID..."
+        v-model="store.userData.userId"
       />
     </div>
     <div class="mb-3">
@@ -138,4 +142,15 @@ function moveList() {
   </form>
 </template>
 
-<style scoped></style>
+<style scoped>
+.btn {
+  color: black;
+  background-color: white; 
+  border-color: black;
+}
+.btn:hover {
+  color: black;
+  background-color: rgba(211, 211, 211, 0.581); 
+  border-color: black;
+}
+</style>

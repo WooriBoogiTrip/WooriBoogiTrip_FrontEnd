@@ -37,22 +37,22 @@ function onPageChange(pg) {
 
 <template>
   <div class="row">
-    <ul class="pagination justify-content-center">
+    <ul class="pagination justify-content-center" id="">
       <li class="page-item">
-        <a class="page-link" @click="onPageChange(1)">최신</a>
+        <a class="page-link" @click="onPageChange(1)" style="color: black;">최신</a>
       </li>
       <li class="page-item">
-        <a class="page-link" @click="onPageChange(startPage == 1 ? 1 : startPage - 1)">이전</a>
+        <a class="page-link" @click="onPageChange(startPage == 1 ? 1 : startPage - 1)" style="color: black;">이전</a>
       </li>
       <template v-for="pg in range(startPage, endPage)" :key="pg">
         <li :class="currentPage === pg ? 'page-item active' : 'page-item'">
-          <a class="page-link" @click="onPageChange(pg)">{{ pg }}</a>
+          <a class="page-link" @click="onPageChange(pg)" style="color: black; background-color: white;">{{ pg }}</a>
         </li>
       </template>
       <li class="page-item">
-        <a class="page-link" @click="onPageChange(endRange ? totalPage : endPage + 1)">다음</a>
+        <a class="page-link" @click="onPageChange(endRange ? totalPage : endPage + 1)" style="color: black;">다음</a>
       </li>
-      <li class="page-item"><a class="page-link" @click="onPageChange(totalPage)">마지막</a></li>
+      <li class="page-item"><a class="page-link" @click="onPageChange(totalPage)" style="color: black;">마지막</a></li>
     </ul>
   </div>
 </template>
@@ -61,4 +61,6 @@ function onPageChange(pg) {
 a {
   cursor: pointer;
 }
+
+
 </style>

@@ -1,5 +1,6 @@
 <script setup>
 import WeatherView from "./WeatherView.vue";
+import BoardToday from "@/components/boards/BoardToday.vue";
 
 </script>
 <template>
@@ -19,7 +20,8 @@ import WeatherView from "./WeatherView.vue";
     <br>
     <br>
     <p class="cards text-center" id="notice-section">
-      <h2>공지사항</h2>
+      <h2>오늘의 게시물</h2>
+        <BoardToday></BoardToday>
     </p>
   </div>
   <router-view></router-view>
