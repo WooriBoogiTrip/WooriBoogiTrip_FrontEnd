@@ -1,41 +1,17 @@
-# EnjoyTrip 08조 김민석 유수안
-
-메인화면<br/>
-![메인화면](/uploads/7b727482cdee1479b9c3e43ee4a26ca5/메인화면.jpg)
-
----
-
-회원가입<br/>
-![회원가입](/uploads/190d4ad231f96d2990f27589a1cba861/회원가입.jpg)
-
----
-
-관광지 검색 화면<br/>
-![관광지검색화면](/uploads/eddf0cfb7e82e0002a3848ee2da083a9/관광지검색화면.jpg)
-
----
-
-관광지 상세 정보<br/>
-![관광지상세정보](/uploads/0b5975f630e7abd4b7ea1b94435b8d50/관광지상세정보.jpg)
-
----
-
-게시판 리스트<br/>
-![관광지별게시판리스트](/uploads/87fc65ae126fe1075d81927d415bf024/관광지별게시판리스트.jpg)
-
----
-
-게시판 글 작성<br/>
-![게시판글작성](/uploads/f88e19947cccb78a84d0a33245459d18/게시판글작성.jpg)
-
----
-
-여행 계획 리스트<br/>
-![여행계획리스트](/uploads/6c9b0385ea925cfaba860a2d6ddafe18/여행계획리스트.jpg)
-
----
-
-여행 계획 상세정보<br/>
-![여행계획상세정보](/uploads/177d5945854d71db246d91f38e386d4f/여행계획상세정보.jpg)
-
----
+# WooriBoogi Trip
+![슬라이드1](https://github.com/WooriBoogiTrip/WooriBoogiTrip_FrontEnd/assets/74358436/9ffbe86e-a55b-4a2f-8d49-41b1c8a5bba2)
+![슬라이드2](https://github.com/WooriBoogiTrip/WooriBoogiTrip_FrontEnd/assets/74358436/8978f674-1014-40c3-bcab-626ff45c6eed)
+![슬라이드3](https://github.com/WooriBoogiTrip/WooriBoogiTrip_FrontEnd/assets/74358436/250f70d3-4d71-4a01-acad-916ea3462b7a)
+![슬라이드4](https://github.com/WooriBoogiTrip/WooriBoogiTrip_FrontEnd/assets/74358436/21a77b56-8e5a-4fbf-864a-fb81d9c55dca)
+![슬라이드5](https://github.com/WooriBoogiTrip/WooriBoogiTrip_FrontEnd/assets/74358436/40c79036-8c70-448b-b0d7-7c47dfa7b239)
+![슬라이드6](https://github.com/WooriBoogiTrip/WooriBoogiTrip_FrontEnd/assets/74358436/2656d767-56a5-4806-98d5-bcdcdf2338a4)
+![슬라이드7](https://github.com/WooriBoogiTrip/WooriBoogiTrip_FrontEnd/assets/74358436/0ca94aaa-6f0d-4bcb-bddc-3e9abccd65b2)
+![슬라이드8](https://github.com/WooriBoogiTrip/WooriBoogiTrip_FrontEnd/assets/74358436/5e21259e-2739-4203-ab04-5d972cb8c022)
+![슬라이드9](https://github.com/WooriBoogiTrip/WooriBoogiTrip_FrontEnd/assets/74358436/83bd69b4-d9a3-4fc1-9af2-c46d16dc9dbb)
+![슬라이드10](https://github.com/WooriBoogiTrip/WooriBoogiTrip_FrontEnd/assets/74358436/d17a02e9-4483-4aff-8de1-8ac3c36deca7)
+![슬라이드11](https://github.com/WooriBoogiTrip/WooriBoogiTrip_FrontEnd/assets/74358436/97ab103f-f802-4197-9d25-d57f62c190e3)
+![슬라이드12](https://github.com/WooriBoogiTrip/WooriBoogiTrip_FrontEnd/assets/74358436/9650e04d-80aa-4fcf-88cb-3bdcd71c42b4)
+![슬라이드13](https://github.com/WooriBoogiTrip/WooriBoogiTrip_FrontEnd/assets/74358436/6bdf91a7-e07d-4f80-9f8a-e345f02cb472)
+![슬라이드14](https://github.com/WooriBoogiTrip/WooriBoogiTrip_FrontEnd/assets/74358436/436068f4-6dd7-44f0-a9f3-a615033898fd)
+![슬라이드15](https://github.com/WooriBoogiTrip/WooriBoogiTrip_FrontEnd/assets/74358436/a0ae323d-377d-4309-a145-3b1cc2eea8f7)
+![슬라이드16](https://github.com/WooriBoogiTrip/WooriBoogiTrip_FrontEnd/assets/74358436/bc976950-4758-4bb0-bc5d-37e936cfba04)
