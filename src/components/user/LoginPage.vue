@@ -2,29 +2,42 @@
 import { useRouter } from "vue-router";
 import { ref } from "vue";
 import { localaxios } from "../../api/authapi";
-
+import { authorizationStore } from "../../stores/authorization.js";
+const store = authorizationStore();
 const axios = localaxios();
 const router = useRouter();
 const userId = ref('');
 const userPwd = ref('');
+const errorMessage = ref('');
 
 const login = () => {
-  axios.post("/users/login", { 
-    userid: userId.value, 
-    userpwd: userPwd.value 
-  }).then(({ data }) => {
-    if (data) {
-      router.push({ name: "home" });
-    }
-  });
+  let formData = new FormData();
+  formData.append("userid", userId.value);
+  formData.append("userpwd", userPwd.value);
+
+  axios.post("/api/v1/users/login", formData)
+    .then(({ data }) => {
+      if (data) {
+        store.isLoggedIn = true;
+        store.userData = data;
+        router.push({ name: "home" });
+      }
+    }).catch(error => {
+      if (error.response && error.response.status === 401) {
+        errorMessage.value = '아이디나 비밀번호가 일치하지 않습니다';
+      } else {
+        errorMessage.value = '로그인 중 오류가 발생했습니다';
+      }
+    });
 };
+
 
 </script>
 
 <template>
   <form method="POST">
     <div class="mb-3">
-      <label for="userIdInput" class="form-label">사용자 ID</label>
+      <label for="userIdInput" class="form-label">아이디</label>
       <input
         type="text"
         class="form-control"
@@ -43,6 +56,9 @@ const login = () => {
         v-model="userPwd"
       />
     </div>
+    <div v-if="errorMessage" class="alert alert-danger">
+      {{ errorMessage }}
+    </div>
     <div class="col-12">
       <button @click="login" type="button" class="btn btn-primary">로그인</button>
     </div>
@@ -50,4 +66,33 @@ const login = () => {
 
 </template>
 
-<style scoped></style>
+<style scoped>
+#userIdInput, #userPwdInput {
+  border: 2px solid #337CCF;
+  border-radius: 4px;
+}
+
+.form-label {
+  color: #1450A3;
+}
+
+.btn-primary {
+  background-color: #337CCF;
+  border: none;
+}
+
+.alert-danger {
+  background-color: #1450A3;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+form {
+  max-width: 500px;
+  margin: auto;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+</style>
+

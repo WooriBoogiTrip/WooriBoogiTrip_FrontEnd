@@ -1,146 +1,84 @@
 <script setup>
-import { computed, onMounted, ref, watch } from "vue";
-import { modalstateStore } from "../../stores/modalstate";
-let map;
-let markers = ref([]);
-let infowindows = ref([]);
-// let marker;
+import { ref, onMounted, defineProps, watchEffect, defineEmits } from "vue";
+
+const { VITE_KAKAO_MAP_SERVICE_KEY } = import.meta.env; 
+
 const props = defineProps({
-  attractionlist: Array,
+  attractionlist: Array
 });
-const list = computed(() => props.attractionlist);
 
-const emit = defineEmits(["modal"]);
+const emit = defineEmits(['modal']);
 
-const store = modalstateStore();
-const changemodal = (seq) => {
-  store.modalstate = true;
-  const newinfo = ref({
-    id: list.value[seq].contentId,
-    title: list.value[seq].title,
-    addr: list.value[seq].addr1,
-    imgsrc: list.value[seq].firstImage,
-    overview: list.value[seq].overview,
-  });
-  emit("modal", newinfo);
-};
+var map;
+const markers = ref([]);
 
 onMounted(() => {
-  window.changemodal = changemodal;
-  if (window.naver && window.naver.maps) {
+  if (window.kakao && window.kakao.maps) {
     initMap();
   } else {
-    /* global naver */
     const script = document.createElement("script");
-    script.src = `https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${
-      import.meta.env.VITE_CLIENT_ID
-    }`;
-    script.onload = () => {
-      initMap();
-      naver.maps.Event.addListener(map, "idle", function () {
-        updateMarkers(map, markers);
-      });
-    };
-
+    script.src = `//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${VITE_KAKAO_MAP_SERVICE_KEY}&libraries=services,clusterer`;
+    script.onload = () => kakao.maps.load(() => initMap());
     document.head.appendChild(script);
   }
 });
 
-// 윈도우
-function updateMarkers(map, markers) {
-  var mapBounds = map.getBounds();
-  var marker, position;
-
-  for (var i = 0; i < markers.length; i++) {
-    marker = markers[i];
-    position = marker.getPosition();
-
-    if (mapBounds.hasLatLng(position)) {
-      showMarker(map, marker);
-    } else {
-      hideMarker(map, marker);
-    }
+watchEffect(() => {
+  if (props.attractionlist && map) {
+    loadMarkers();
   }
-}
+});
 
-function showMarker(map, marker) {
-  if (marker.setMap()) return;
-  marker.setMap(map);
-}
-
-function hideMarker(map, marker) {
-  if (!marker.setMap()) return;
-  marker.setMap(null);
-}
-function getClickHandler(seq) {
-  return function (e) {
-    var marker = markers.value[seq],
-      infoWindow = infowindows.value[seq];
-
-    if (infoWindow.getMap()) {
-      infoWindow.close();
-    } else {
-      infoWindow.open(map, marker);
-    }
-  };
-}
-
-// 윈도우
 const initMap = () => {
-  map = new naver.maps.Map("map", {
-    center: new naver.maps.LatLng(37.5013, 127.0396),
-    zoom: 14,
-  });
-
-  makemarkers();
+  const container = document.getElementById("map");
+  const options = {
+    center: new kakao.maps.LatLng(35.1795543, 129.0756416),
+    level: 3,
+  };
+  map = new kakao.maps.Map(container, options);
 };
 
-const makemarkers = async () => {
-  await list.value.forEach((item) => {
-    const marker = new naver.maps.Marker({
-      position: new naver.maps.LatLng(item.latitude, item.longitude),
+const loadMarkers = () => {
+  deleteMarkers(); // 기존 마커 삭제
+
+  // 마커 위치 정보를 저장하기 위한 LatLngBounds 객체 생성
+  const bounds = new kakao.maps.LatLngBounds();
+
+  markers.value = props.attractionlist.map(attraction => {
+    const position = new kakao.maps.LatLng(attraction.latitude, attraction.longitude);
+    bounds.extend(position); // LatLngBounds 객체에 마커 위치 추가
+
+    const marker = new kakao.maps.Marker({
       map: map,
+      position: position,
+      title: attraction.name
     });
 
-    markers.value.push(marker);
-    let infoWindow = new naver.maps.InfoWindow({
-      content:
-        `<div style="width:150px;text-align:center;padding:10px;"
-        onclick=changemodal(${infowindows.value.length}) >` +
-        item.title +
-        "</div>",
+    kakao.maps.event.addListener(marker, 'click', () => {
+      emit('modal', attraction);
     });
-    infowindows.value.push(infoWindow);
+
+    return marker;
   });
-  if (markers.value.length > 0) {
-    map.setCenter(markers.value[Math.floor(Math.random() * markers.value.length)].position);
-    map.setZoom(13);
-  }
-  for (let i = 0, ii = markers.value.length; i < ii; i++) {
-    naver.maps.Event.addListener(markers.value[i], "click", getClickHandler(i));
-  }
+  console.log(bounds);
+  // 지도 화면을 모든 마커가 포함되도록 조정
+  map.setBounds(bounds);
 };
-const deletemarkers = () => {
-  markers.value.forEach((item) => {
-    item.setMap(null);
-  });
-  infowindows = ref([]);
-  markers = ref([]);
+
+const deleteMarkers = () => {
+  markers.value.forEach(marker => marker.setMap(null));
+  markers.value = [];
 };
-watch(
-  () => props.attractionlist.value,
-  () => {
-    if (window.naver && window.naver.maps) {
-      deletemarkers();
-      makemarkers();
-    }
-  },
-  { deep: true },
-);
+
 </script>
 
 <template>
-  <div id="map" style="width: 100%; height: 300px"></div>
+  <div id="map"></div>
 </template>
 
-<style scoped></style>
+<style>
+#map {
+  width: 100%;
+  height: 600px;
+}
+</style>

@@ -9,10 +9,6 @@ const userinfo = { email: "이메일", nickname: "닉네임", phone: "연락처"
 </script>
 
 <template>
-  <!-- <p>이메일 : {{ userinfo.email }}</p>
-  <p>이름 : {{ userinfo.name }}</p>
-  <p>닉네임 : {{ userinfo.nickname }}</p>
-  <p>연락처 : {{ userinfo.phone }}</p> -->
   <form method="POST">
     <div class="mb-3">
       <label for="formGroupExampleInput" class="form-label">이메일</label>
@@ -53,4 +49,25 @@ const userinfo = { email: "이메일", nickname: "닉네임", phone: "연락처"
   </form>
 </template>
 
-<style scoped></style>
+<style scoped>
+.form-control {
+  border: 2px solid #337CCF;
+  border-radius: 4px;
+}
+
+.form-label {
+  color: #1450A3;
+}
+
+.btn-primary {
+  background-color: #337CCF;
+  border: none;
+}
+
+form {
+  max-width: 500px;
+  margin: auto;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+</style>

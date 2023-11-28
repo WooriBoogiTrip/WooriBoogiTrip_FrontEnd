@@ -8,7 +8,17 @@ import "v3-infinite-loading/lib/style.css";
 
 import App from "./App.vue";
 import router from "./router";
+import "@/assets/css/fonts.css"
+
 const app = createApp(App);
+
+const kakaoMapsKey = import.meta.env.VITE_KAKAO_MAP_SERVICE_KEY;
+
+const script = document.createElement('script');
+script.type = 'text/javascript';
+script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoMapsKey}`;
+document.head.appendChild(script);
+
 
 app.use(createPinia());
 app.use(router);
