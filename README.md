@@ -1,4 +1,39 @@
 # WooriBoogi Trip
+부산여행 가이드
+
+<br>
+<br>
+
+## 화면소개 
+#### 1.메인 
+![우리부기-main](https://github.com/WooriBoogiTrip/WooriBoogiTrip_FrontEnd/assets/74358436/c1db9ed0-0c47-49c2-8388-6fa420608917)
+
+#### 2.관광지 선택
+![ezgif com-optimize](https://github.com/WooriBoogiTrip/WooriBoogiTrip_FrontEnd/assets/74358436/972d86cd-17bc-4c6b-92d3-735b906106d3)
+
+
+
+#### 3.전기차 충전소 지도
+![ezgif com-optimize (1)](https://github.com/WooriBoogiTrip/WooriBoogiTrip_FrontEnd/assets/74358436/b77eb012-6a61-42da-b430-d1f94e6713ea)
+
+
+#### 4.회원가입 및 로그인
+![ezgif com-video-to-gif (1)](https://github.com/WooriBoogiTrip/WooriBoogiTrip_FrontEnd/assets/74358436/c64caa3d-f2a2-4fa4-8083-28ea4fe6c09f)
+
+
+#### 5.자유게시판
+![ezgif com-video-to-gif (3)](https://github.com/WooriBoogiTrip/WooriBoogiTrip_FrontEnd/assets/74358436/c5b956ae-242f-4e41-9271-3d3d833f43bc)
+
+
+#### 6.개인정보 수정
+![ezgif com-video-to-gif (4)](https://github.com/WooriBoogiTrip/WooriBoogiTrip_FrontEnd/assets/74358436/b07b0c0e-3c2c-4ca8-a3da-71dbb043293d)
+
+<br>
+<br>
+
+## 우리부기트립 소개
+
+
 ![슬라이드1](https://github.com/WooriBoogiTrip/WooriBoogiTrip_FrontEnd/assets/74358436/9ffbe86e-a55b-4a2f-8d49-41b1c8a5bba2)
 ![슬라이드2](https://github.com/WooriBoogiTrip/WooriBoogiTrip_FrontEnd/assets/74358436/8978f674-1014-40c3-bcab-626ff45c6eed)
 ![슬라이드3](https://github.com/WooriBoogiTrip/WooriBoogiTrip_FrontEnd/assets/74358436/250f70d3-4d71-4a01-acad-916ea3462b7a)
